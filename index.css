@@ -78,10 +78,11 @@
 .second-div {
   width: 100%;
   margin-bottom: 1rem;
+  padding: 0 0.5rem;
 }
 .third-div {
   width: 100%;
-  height: 71%;
+  height: 70%;
   overflow: auto;
   padding: 0rem 0.5rem;
   border-bottom-left-radius: 0.5rem;
@@ -134,4 +135,24 @@
   .modal-content {
     width: 80%;
   }
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between; /* Space out the title and status */
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+.todo-title {
+  font-size: 16px;
+  color: #333;
+}
+
+.todo-status {
+  font-size: 14px;
+  font-weight: bold;
 }

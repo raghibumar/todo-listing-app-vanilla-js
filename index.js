@@ -24,6 +24,7 @@ function displayTodo(userDetails) {
 
   Object.keys(userDetails).forEach((userId) => {
     const todos = userDetails[userId];
+
     const userCard = document.createElement("div");
     userCard.setAttribute("class", "user-card");
 
@@ -44,8 +45,7 @@ function displayTodo(userDetails) {
 
 // Displaying individual user's todos
 function displayIndividualUserTodos(todos) {
-  console.log("todos:", todos);
-  // Make a modal to show todos
+  // Making a modal to show todos
   const modal = document.createElement("div");
   modal.setAttribute("class", "modal");
 
@@ -63,7 +63,7 @@ function displayIndividualUserTodos(todos) {
   closeBtn.setAttribute("class", "close-btn");
   closeBtn.innerText = "Close";
   closeBtn.addEventListener("click", () => {
-    document.querySelector(".container").removeChild(modal);
+    modal.style.display = "none"; // Hide the modal
   });
   firstDiv.append(user, closeBtn);
 
@@ -73,19 +73,23 @@ function displayIndividualUserTodos(todos) {
   const thirdDiv = document.createElement("div");
   thirdDiv.classList.add("third-div");
 
-  // Making a tab for completed and pending todos
+  // Creating tabs for All Todos, Completed, and Pending
   const tab = document.createElement("div");
   tab.setAttribute("class", "tab");
 
+  const allTab = document.createElement("div");
+  allTab.setAttribute("class", "tab-option active"); // Start with All Todos tab as active
+  allTab.innerText = "All Todos";
+
   const completedTab = document.createElement("div");
-  completedTab.setAttribute("class", "tab-option active"); // Start with Completed tab as active
+  completedTab.setAttribute("class", "tab-option");
   completedTab.innerText = "Completed";
 
   const pendingTab = document.createElement("div");
   pendingTab.setAttribute("class", "tab-option");
   pendingTab.innerText = "Pending";
 
-  tab.append(completedTab, pendingTab);
+  tab.append(allTab, completedTab, pendingTab);
   secondDiv.appendChild(tab);
 
   // A section to display the todos based on the tab selected
@@ -94,21 +98,32 @@ function displayIndividualUserTodos(todos) {
   thirdDiv.appendChild(todoList);
 
   // Event listeners for tab switching
+  allTab.addEventListener("click", () => {
+    allTab.classList.add("active");
+    completedTab.classList.remove("active");
+    pendingTab.classList.remove("active");
+    displayTodos(todos, todoList, "all"); // Show all todos
+  });
+
   completedTab.addEventListener("click", () => {
     completedTab.classList.add("active");
+    allTab.classList.remove("active");
     pendingTab.classList.remove("active");
     displayTodos(
       todos.filter((todo) => todo.completed),
-      todoList
+      todoList,
+      "completed"
     ); // Show only completed todos
   });
 
   pendingTab.addEventListener("click", () => {
     pendingTab.classList.add("active");
+    allTab.classList.remove("active");
     completedTab.classList.remove("active");
     displayTodos(
       todos.filter((todo) => !todo.completed),
-      todoList
+      todoList,
+      "pending"
     ); // Show only pending todos
   });
 
@@ -116,20 +131,46 @@ function displayIndividualUserTodos(todos) {
   modal.appendChild(modalContent);
   document.querySelector(".container").appendChild(modal);
 
-  // Display initial todos (completed ones)
-  displayTodos(
-    todos.filter((todo) => todo.completed),
-    todoList
-  );
+  // Display initial todos (all todos)
+  displayTodos(todos, todoList, "all");
 }
 
 // Function to display todos inside the modal
-function displayTodos(filteredTodos, todoList) {
+function displayTodos(filteredTodos, todoList, selectedTab = "all") {
   todoList.innerHTML = ""; // Clear previous todos
-  filteredTodos.forEach((todo) => {
+
+  filteredTodos.forEach((todo, index) => {
     const todoItem = document.createElement("li");
-    todoItem.innerText = todo.title;
-    todoList.appendChild(todoItem);
+    todoItem.classList.add("todo-item");
+
+    const todoTitle = document.createElement("span");
+    todoTitle.setAttribute("class", "todo-title");
+    if (index + 1 > 9) {
+      todoTitle.innerText = `(${index + 1}) ${todo.title}`;
+    } else {
+      todoTitle.innerText = `(0${index + 1}) ${todo.title}`;
+    }
+
+    const status = document.createElement("span");
+    status.setAttribute("class", "status");
+
+    if (selectedTab === "all") {
+      if (todo.completed) {
+        status.innerText = "Completed";
+        status.style.color = "green";
+      } else {
+        status.innerText = "Pending";
+        status.style.color = "red";
+      }
+      todoItem.append(todoTitle, status);
+    } else if (selectedTab === "completed") {
+      todoTitle.style.textDecoration = "line-through";
+      todoItem.append(todoTitle);
+    } else {
+      todoItem.append(todoTitle);
+    }
+
+    todoList.append(todoItem);
   });
 }
 
