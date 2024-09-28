@@ -15,12 +15,8 @@
   top: 0;
   left: 0;
 }
-.container {
-  /* border: 1px solid red; */
-  /* height: 100vh; */
-}
+
 .todo-container {
-  /* border: 1px solid red; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
@@ -124,9 +120,6 @@
 @media only screen and (min-width: 320px) and (max-width: 768px) {
   .todo-container {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .modal {
-    /* align-items: flex-end; */
   }
   .modal-content {
     width: 100%;
