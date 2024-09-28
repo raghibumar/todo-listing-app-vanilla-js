@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.header {
+  width: 100%;
+  height: 60px;
+  background-color: rgb(41, 39, 39);
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.container {
+  /* border: 1px solid red; */
+  /* height: 100vh; */
+}
+.todo-container {
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+.user-card {
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  cursor: pointer;
+}
+
+.modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  width: 60%;
+  height: 80%;
+}
+.first-div {
+  border-bottom: 2px solid gray;
+  opacity: 0.5;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.7rem;
+}
+.close-btn {
+  padding: 0.2rem 1rem;
+  font-size: larger;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  border-radius: 0.2rem;
+  border: none;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+.second-div {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.third-div {
+  width: 100%;
+  height: 73%;
+  overflow: auto;
+  padding: 0rem 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.tab {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.tab-option {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  background-color: lightgray;
+  border: 1px solid gray;
+  transition: background-color 0.3s;
+}
+
+.active {
+  background-color: darkgray;
+}
+
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.todo-list li {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
