@@ -102,29 +102,35 @@ function displayIndividualUserTodos(todos) {
     allTab.classList.add("active");
     completedTab.classList.remove("active");
     pendingTab.classList.remove("active");
-    displayTodos(todos, todoList, "all"); // Show all todos
+
+    // Show all todos
+    displayTodos(todos, todoList, "all");
   });
 
   completedTab.addEventListener("click", () => {
     completedTab.classList.add("active");
     allTab.classList.remove("active");
     pendingTab.classList.remove("active");
+
+    // Show only completed todos
     displayTodos(
       todos.filter((todo) => todo.completed),
       todoList,
       "completed"
-    ); // Show only completed todos
+    );
   });
 
   pendingTab.addEventListener("click", () => {
     pendingTab.classList.add("active");
     allTab.classList.remove("active");
     completedTab.classList.remove("active");
+
+    // Show only pending todos
     displayTodos(
       todos.filter((todo) => !todo.completed),
       todoList,
       "pending"
-    ); // Show only pending todos
+    );
   });
 
   modalContent.append(firstDiv, secondDiv, thirdDiv);
