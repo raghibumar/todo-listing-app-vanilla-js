@@ -126,7 +126,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
   .modal {
-    align-items: flex-end;
+    /* align-items: flex-end; */
   }
   .modal-content {
     width: 100%;
