@@ -158,7 +158,7 @@ function displayTodos(filteredTodos, todoList, selectedTab = "all") {
     }
 
     const status = document.createElement("span");
-    status.setAttribute("class", "status");
+    status.setAttribute("class", "todo-status");
 
     if (selectedTab === "all") {
       if (todo.completed) {
