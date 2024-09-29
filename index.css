@@ -157,3 +157,12 @@
   font-weight: bold;
   user-select: none;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bdb9b9;
+  border-radius: 10px;
+}
